@@ -26,8 +26,8 @@ jobs:
         python3 ./generate_page.py
     - name: Commit changes
       env:
-        GH_MAIL: ${{ secrets.GH_MAIL }}
-        GH_USER: ${{ secrets.GH_USER }}
+        GH_MAIL: your-email@example.com
+        GH_USER: your-github-username
       run: |
         git config --global user.email $GH_MAIL
         git config --global user.name $GH_USER
