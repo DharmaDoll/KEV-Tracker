@@ -23,10 +23,20 @@ jobs:
         GH_TOKEN:  ${{ secrets.GH_TOKEN }}
       run: |
         ./fetch.sh
-        python ./generate_page.py
+        python3 ./generate_page.py
     - name: Commit changes
-      uses: EndBug/add-and-commit@v9
-      with:
-          default_author: github_actions
       env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        GH_MAIL: ${{ secrets.GH_MAIL }}
+        GH_USER: ${{ secrets.GH_USER }}
+      run: |
+        git config --global user.email $GH_MAIL
+        git config --global user.name $GH_USER
+        diff_count=$(echo `git status -s | wc -l`)
+        if [ $diff_count -gt 0 ]; then
+          echo "There are some changes."
+            git add index.html
+            git commit -m "Updated index.html"
+          git push origin main
+        else
+          echo "No change."
+        fi
