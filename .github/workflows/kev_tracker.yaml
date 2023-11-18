@@ -1,4 +1,4 @@
-name: Update Notebook
+name: Update data
 on:
   push:
     branches: [ main ]
@@ -22,7 +22,7 @@ jobs:
       env:
         GH_TOKEN:  ${{ secrets.GH_TOKEN }}
       run: |
-        ./fetcher.sh
+        ./fetch.sh
         ./generate_page.py
     - name: Commit changes
       uses: EndBug/add-and-commit@v9
