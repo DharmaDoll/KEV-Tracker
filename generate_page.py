@@ -34,24 +34,6 @@ for name, group in grouped:
     row["PoC"] = poc_html
     poc_df = pd.concat([poc_df, row], ignore_index=True)
 
-# for name, group in grouped:
-#     poc_html = ""
-#     no_data_flag = True
-#     for item in group['PoC']:
-#         if type(item) is str:
-#             if no_data_flag: # Show poc button only if there is data
-#                 poc_html += "<div><button class='poc-button'>Show poc</button><div class='poc' style='display: none;'>"
-#                 no_data_flag = False
-#             poc_html += "<p><a href='" + str(item) + "' target='_blank'>" + str(item) + "</a></p>"
-#         else:
-#             poc_html += "<p></p>"
-#     if not no_data_flag:
-#         poc_html += "</div></div>"
-#         row = group.head(1).copy()
-#         row["PoC"] = poc_html
-#         poc_df = pd.concat([poc_df, row], ignore_index=True)
-
-
 # 'date'で降順ソート
 poc_df.sort_values(by='date', ascending=False, inplace=True)
 
