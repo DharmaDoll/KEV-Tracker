@@ -23,7 +23,7 @@ jobs:
         GH_TOKEN:  ${{ secrets.GH_TOKEN }}
       run: |
         ./fetch.sh
-        ./generate_page.py
+        python ./generate_page.py
     - name: Commit changes
       uses: EndBug/add-and-commit@v9
       with:
