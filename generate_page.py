@@ -6,7 +6,7 @@ from cve_data import CveDataSet
 # CSVやsqlite3からのデータをロードします
 input_vuln_data = CveDataSet()
 # Merge the respective data
-df_kev_epss = pd.merge(input_vuln_data.kev, input_vuln_data.epss, left_on='CVE', right_on='CVE')
+df_kev_epss = pd.merge(input_vuln_data.kev, input_vuln_data.epss, on='CVE', how='left')
 df_kev_epss_nvd =  pd.merge(df_kev_epss, input_vuln_data.nvd, how="left", left_on='CVE', right_on='CVE')
 df_kev_epss_nvd =  df_kev_epss_nvd[["CVE", "CVSS3", "EPSS", "EPSS Percentile", "date", "Description"]]
 
